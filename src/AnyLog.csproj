@@ -22,10 +22,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AnyLog.Base" Version="1.0.0" />
+
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AnyLog.Base" Version="1.0.0" />
     <PackageReference Include="AnyLog.CodeAnalyzer" Version="1.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>

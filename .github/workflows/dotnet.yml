@@ -23,4 +23,4 @@ jobs:
         dotnet-version: 6.0.x
         include-prerelease: true
     - name: Setup nuget source
-      run: dotnet nuget add source --username wolfbublitz --password ${{ secrets.NUGET_API_KEY }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/AnyLog/index.json"
+      run: dotnet nuget add source https://nuget.pkg.github.com/AnyLog/index.json -n github -u wolfbublitz -p ${{ secrets.NUGET_API_KEY }} --store-password-in-clear-text

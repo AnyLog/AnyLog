@@ -2,9 +2,13 @@ name: .NET
 
 on:
   push:
-    branches: [ "1.0.x" ]
+    branches: "*"
+    tags: "*"
   pull_request:
-    branches: [ "1.0.x" ]
+    branches: "*"
+  release:
+    types:
+      - created
 
 jobs:
   build:
@@ -12,14 +16,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v2
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 5.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+        dotnet-version: 6.0.x
+        include-prerelease: true
+    - name: Setup nuget source
+      run: dotnet nuget add source --username wolfbublitz --password ${{ secrets.NUGET_API_KEY }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/AnyLog/index.json"
